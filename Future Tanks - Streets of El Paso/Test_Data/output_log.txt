@@ -1,0 +1,54 @@
+Initialize engine version: 5.6.0f3 (497a0f351392)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 5700 Series (ID=0x68be)
+    Vendor:   ATI
+    VRAM:     1010 MB
+    Driver:   15.200.1062.1004
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.425 seconds
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Tubocass\Projects\Future Tanks\Future Tanks - Streets of El Paso\Test_Data\Managed\System.dll (this message is harmless)
+desktop: 1680x1050 60Hz; virtual: 1680x1050 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.636800 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 3884 -> priority: 1 
+  Thread -> id: d24 -> priority: 1 
+MatchMakingClient ListMatches :https://mm.unet.unity3d.com/json/reply/ListMatchRequest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+MatchMakingClient Join :https://mm.unet.unity3d.com/json/reply/JoinMatchRequest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
+ 
+(Filename:  Line: 462)
+
+DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
+ 
+(Filename:  Line: 462)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.239111 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1827.
+Total: 2.576933 ms (FindLiveObjects: 0.137866 ms CreateObjectMapping: 0.081644 ms MarkObjects: 2.337378 ms  DeleteObjects: 0.012711 ms)
+
