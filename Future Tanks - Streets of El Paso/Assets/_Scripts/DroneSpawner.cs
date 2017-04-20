@@ -5,7 +5,8 @@ using UnityEngine;
 public class DroneSpawner : MonoBehaviour 
 {
 	public GameObject DroneSpawn;
-	public GameObject[] wps;
+	public GameObject[] wpsLeft, wpsRight;
+	int num;
 
 	
 	// Update is called once per frame
@@ -14,7 +15,9 @@ public class DroneSpawner : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
 			GameObject spawn = (GameObject)Instantiate(DroneSpawn,transform.position+new Vector3(5,2,1),Quaternion.identity);
-			spawn.GetComponent<BasicDrone>().waypoints = wps;
+			num = (int)Mathf.Repeat(num, 2);
+			spawn.GetComponent<BasicDrone>().waypoints = num == 1 ? wpsLeft:wpsRight;
+			num++;
 		}
 	}
 }

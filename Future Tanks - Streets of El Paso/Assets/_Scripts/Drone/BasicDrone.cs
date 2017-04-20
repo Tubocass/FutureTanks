@@ -7,9 +7,9 @@ public class BasicDrone : MonoBehaviour
 {
 	public Rigidbody m_Rigidbody;
 	public GameObject[] waypoints;
-	[SerializeField]Vector3 CurrentVector;
-	[SerializeField]int currentPoint = 0;
 	[SerializeField]float m_Speed = 1f;
+	int currentPoint = 0;
+	Vector3 CurrentVector;
 	NavMeshAgent agent;   
 
 	void Start()
@@ -18,6 +18,7 @@ public class BasicDrone : MonoBehaviour
 		agent = GetComponent<NavMeshAgent>();
 		CurrentVector = waypoints[currentPoint].transform.position;
 		agent.SetDestination(CurrentVector);
+		agent.speed = 8;
 	}
 
 	void Update()

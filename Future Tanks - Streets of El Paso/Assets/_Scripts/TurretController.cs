@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour 
 {
-	BasicDrone target;
-	LayerMask mask;
-	[SerializeField]Transform Muzzle;
-	[SerializeField] GameObject bullet;
-	[SerializeField]float sightRange;
-	bool canFire = true;
+	public float sightRange;
+	public Transform Muzzle;
+	public GameObject bulletFab;
+	private bool canFire = true;
+	private float sightSqrd;
+	[SerializeField] string Enemy;
+	GameObject target;
+	[SerializeField]LayerMask enemyMask;
+	LayerMask levelMask;
 
 	void Start()
 	{
-		mask = 1<<LayerMask.NameToLayer("Players");
+		//enemyMask = 1<<LayerMask.NameToLayer("Players");
+		levelMask = 1<<LayerMask.NameToLayer("LevelGeometry");
+		sightSqrd = sightRange*sightRange;
 		StartCoroutine(TargetNearest());
 	}
 
@@ -23,14 +28,37 @@ public class TurretController : MonoBehaviour
 		{
 			if(target == null)
 			{
-				RaycastHit hitInfo = new RaycastHit();
-				Physics.SphereCast(transform.position,sightRange,transform.forward,out hitInfo,sightRange,mask, QueryTriggerInteraction.Ignore);
-				if(hitInfo.collider!=null && hitInfo.collider.CompareTag("Drone"))
+//				RaycastHit hitInfo = new RaycastHit();
+//				Physics.SphereCast(transform.position,sightRange,transform.forward,out hitInfo,1,mask, QueryTriggerInteraction.Ignore);
+//				if(hitInfo.collider!=null && hitInfo.collider.CompareTag("Drone"))
+//				{
+//					target = hitInfo.collider.GetComponent<BasicDrone>();
+//				}
+				Collider[] cols = Physics.OverlapSphere(transform.position,sightRange,enemyMask,QueryTriggerInteraction.Ignore);
+				float nearestDist, newDist;
+				Collider temp = new Collider();
+
+				if(cols.Length>0)
 				{
-					target = hitInfo.collider.GetComponent<BasicDrone>();
+					nearestDist = (cols[0].transform.position-transform.position).sqrMagnitude; //Vector3.Distance(Location,enemies[0].Location);
+					foreach(Collider o in cols)
+					{
+						if(o.CompareTag(Enemy))
+						{
+							newDist = (o.transform.position-transform.position).sqrMagnitude;//Vector3.Distance(Location,unit.Location);
+							if(newDist <= nearestDist)
+							{
+								nearestDist = newDist;
+								temp = o;
+							}
+						}
+					}
+					if(temp!=null) //&& !Physics.Raycast(Muzzle.position,temp.transform.position-Muzzle.position,sightRange,levelMask))
+					target = temp.gameObject;
 				}
+
 			}else{
-				if(Vector3.Distance(transform.position,target.transform.position)>sightRange*2)
+				if((transform.position-target.transform.position).sqrMagnitude>sightSqrd)
 				{
 					target = null;
 				}
@@ -45,13 +73,14 @@ public class TurretController : MonoBehaviour
 	}
 	void Update()
 	{
-		if(target!=null)
+		if(target!=null && !Physics.Raycast(Muzzle.position,target.transform.position-Muzzle.position,sightRange,levelMask))
 		{
+			Debug.DrawRay(Muzzle.position, target.transform.position-Muzzle.position);
 			transform.LookAt(target.transform.position);
 			if(canFire)
 			{
 				Quaternion q = Quaternion.LookRotation(target.transform.position-Muzzle.position);
-				GameObject bull = (GameObject)Instantiate(bullet,Muzzle.position,q);
+				GameObject bull = (GameObject)Instantiate(bulletFab,Muzzle.position,q);
 				canFire = false;
 				StartCoroutine(Cooldown());
 			}
