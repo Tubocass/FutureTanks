@@ -9,6 +9,7 @@ public class BasicDrone : MonoBehaviour
 	public GameObject[] waypoints;
 	[SerializeField]float m_Speed = 1f;
 	int currentPoint = 0;
+	bool bMoving;
 	Vector3 CurrentVector;
 	NavMeshAgent agent;   
 
@@ -16,20 +17,30 @@ public class BasicDrone : MonoBehaviour
 	{
 		//initialize color, etc.
 		agent = GetComponent<NavMeshAgent>();
-		CurrentVector = waypoints[currentPoint].transform.position;
-		agent.SetDestination(CurrentVector);
-		agent.speed = 8;
+		if(waypoints[currentPoint]!=null)
+		{
+			CurrentVector = waypoints[currentPoint].transform.position;
+			bMoving = true;
+			agent.SetDestination(CurrentVector);
+			agent.speed = 8;
+		}
+	
 	}
 
 	void Update()
 	{
-		if(currentPoint<waypoints.Length-1)
+		if(bMoving && currentPoint<waypoints.Length-1)
 		{
 			if(Vector3.Distance(transform.position, CurrentVector)<=2)
 			{
 				currentPoint++;
-				CurrentVector = waypoints[currentPoint].transform.position;
-				agent.SetDestination(CurrentVector);
+				if(waypoints[currentPoint]!=null)
+				{
+					CurrentVector = waypoints[currentPoint].transform.position;
+					agent.SetDestination(CurrentVector);
+				}else {
+				bMoving = false;
+				}
 			}
 		}
 	}

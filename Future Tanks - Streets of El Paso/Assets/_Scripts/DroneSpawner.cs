@@ -5,7 +5,9 @@ using UnityEngine;
 public class DroneSpawner : MonoBehaviour 
 {
 	public GameObject DroneSpawn;
-	public GameObject[] wpsLeft, wpsRight;
+	public Transform spawnPoint;
+
+	public GameObject[] wpsOuterLeft, wpsOuterRight, wpsInnerRight, wpsInnerLeft;
 	int num;
 
 	
@@ -14,9 +16,20 @@ public class DroneSpawner : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			GameObject spawn = (GameObject)Instantiate(DroneSpawn,transform.position+new Vector3(5,2,1),Quaternion.identity);
-			num = (int)Mathf.Repeat(num, 2);
-			spawn.GetComponent<BasicDrone>().waypoints = num == 1 ? wpsLeft:wpsRight;
+			Quaternion q = Quaternion.LookRotation(spawnPoint.position - transform.position);
+			GameObject spawn = (GameObject)Instantiate(DroneSpawn,spawnPoint.position,q);
+			num = (int)Mathf.Repeat(num, 4);
+			switch(num)
+			{
+				case 0: spawn.GetComponent<BasicDrone>().waypoints = wpsOuterLeft;
+				break;
+				case 1: spawn.GetComponent<BasicDrone>().waypoints = wpsOuterRight;
+				break;
+				case 2: spawn.GetComponent<BasicDrone>().waypoints = wpsInnerRight;
+				break;
+				case 3: spawn.GetComponent<BasicDrone>().waypoints = wpsInnerLeft;
+				break;
+			}
 			num++;
 		}
 	}
